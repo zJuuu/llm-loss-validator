@@ -12,9 +12,16 @@ WORKDIR /app
 COPY . .
 
 RUN pip3 install -r requirements.txt
+RUN pip3 install flash-attn --no-build-isolation
 
 WORKDIR /app/src
 
 ENV IS_DOCKER_CONTAINER=1
+ENV HF_TOKEN=""
+ENV FLOCK_API_KEY=""
+ENV TASK_ID=""
+ENV VALIDATION_ARGS_FILE="validation_config.json.example"
+ENV AUTO_CLEAN_CACHE="False"
+ENV LORA_ONLY="True"
 
-CMD ["sh", "-c", "bash start.sh --hf_token ${HF_TOKEN} --flock_api_key ${FLOCK_API_KEY} --task_id ${TASK_ID} --validation_args_file validation_config.json.example"]
+CMD ["sh", "-c", "bash start.sh --hf_token ${HF_TOKEN} --flock_api_key ${FLOCK_API_KEY} --task_id ${TASK_ID} --validation_args_file ${VALIDATION_ARGS_FILE} --auto_clean_cache ${AUTO_CLEAN_CACHE} --lora_only ${LORA_ONLY}"]
