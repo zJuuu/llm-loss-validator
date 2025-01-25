@@ -13,8 +13,6 @@ COPY . .
 
 RUN pip3 install -r requirements.txt
 
-RUN pip3 install flash-attn --no-build-isolation
-
 WORKDIR /app/src
 
 ENV IS_DOCKER_CONTAINER=1

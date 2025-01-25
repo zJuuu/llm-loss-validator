@@ -26,6 +26,10 @@ if [ -z "$HF_TOKEN" ] || [ -z "$FLOCK_API_KEY" ] || [ -z "$TASK_ID" ]; then
     usage
 fi
 
+if [ -z "$IS_DOCKER_CONTAINER" ]; then
+    pip3 install flash-attn --no-build-isolation
+fi
+
 export HF_TOKEN
 export FLOCK_API_KEY
 
